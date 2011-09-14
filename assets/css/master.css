@@ -66,11 +66,11 @@ body {
 
   .map_image {
     margin: auto;
-    height: 250px;
-    width: 250px;
+    height: 320px;
+    width: 320px;
     border: 1px solid #aaa;
-    -webkit-border-radius: 20px;
-    border-radius: 20px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
     overflow: hidden;
   }
 
