@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns		= "http://www.w3.org/ns/widgets"
 	xmlns:gap	= "http://phonegap.com/ns/1.0"
-	id		= "com.phonegap.getting.started"
-	version 	= "1.0.0">
+	id		= "com.bugzap.time.tracking"
+	version 	= "0.0.1">
 
-	<name>PhoneGap: Getting Started</name>
+	<name>Smart Time</name>
 
 	<description>
-		A template for getting started with PhoneGap development and build.phonegap.com
+		Keep track of what you're doing and how much time you spend doing it.
 	</description>
 
-	<author href="http://alunny.github.com"
-		email="andrew.lunny@nitobi.com">
+	<author href="http://mikemainguy.blogspot.com"
+		email="mike.mainguy@gmail.cpom">
 		Andrew Lunny
 	</author>
 
