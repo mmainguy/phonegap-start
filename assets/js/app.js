@@ -3,55 +3,100 @@
 //
 run(function () {
     // immediately invoked on first run
-    var init = (function () {
-        setInterval(function(){
-            var d = new Date();
-            x$('#title_bar')[0].innerHTML = d.toLocaleTimeString();
+    var data = {
+        key: 'data',
+        data: [],
+        curr_punch: null
+    };
+    store.get('data', function(stored_data) {
+        if (stored_data != null) {
+            data = stored_data
+        }
+    });
+    loadTable();
 
+    var init = (function () {
+        setInterval(function() {
+            d = new Date();
+            my_str = "";
+            if (data.curr_punch != null) {
+                my_str = toHours(d.valueOf() - data.curr_punch);
+
+                my_str = " (" + my_str + ")"
+
+            }
+            x$('#title_bar').html('inner', d.toLocaleTimeString() + my_str);
         }, 1000);
 
     })();
-    
-    // a little inline controller
-    when('#welcome');
-    when('#settings', function() {
-		// load settings from store and make sure we persist radio buttons.
-		store.get('config', function(saved) {
-			if (saved) {
-				if (saved.map) {
-					x$('input[value=' + saved.map + ']').attr('checked',true);
-				}
-				if (saved.zoom) {
-					x$('input[name=zoom][value="' + saved.zoom + '"]').attr('checked',true);
-				}
-			}
-		});
-	});
-    when('#map', function () {
-        store.get('config', function (saved) {
-            // construct a gmap str
-            var map  = saved ? saved.map || ui('map') : ui('map')
-            ,   zoom = saved ? saved.zoom || ui('zoom') : ui('zoom')
-            ,   path = "http://maps.google.com/maps/api/staticmap?center=";
-			
-            navigator.geolocation.getCurrentPosition(function (position) {
-                var location = "" + position.coords.latitude + "," + position.coords.longitude;
-                path += location + "&zoom=" + zoom;
-                path += "&size=250x250&maptype=" + map + "&markers=color:red|label:P|";
-                path += location + "&sensor=false";
 
-                x$('img#static_map').attr('src', path);
-            }, function () {
-                x$('img#static_map').attr('src', "assets/img/gpsfailed.png");
-            });
-        });
+    x$('#start_button').on('click', function() {
+        setTime('start')
     });
-    when('#save', function () {
-        store.save({
-            key:'config',
-            map:ui('map'),
-            zoom:ui('zoom')
-        });
-        display('#welcome');
+
+    x$('#stop_button').on('click', function() {
+        setTime('stop')
     });
+    function toHours(time_interval) {
+        return (time_interval / (60000 * 60)).toFixed(2);
+    }
+
+    function setTime(start_or_stop) {
+        var curr = new Date();
+        if (data.curr_punch != null) {
+            data.data.push({start: data.curr_punch.valueOf(), stop: curr.valueOf(), duration: curr.valueOf() - data.curr_punch });
+            data.curr_punch = null;
+        } else {
+            if (start_or_stop == 'start') {
+                data.curr_punch = curr.valueOf();
+            } else {
+                data.curr_punch = null;
+            }
+
+        }
+        store.save(data, function(ret) {
+            data = ret;
+        });
+        x$('#tracking-table tbody').html('inner', '');
+        loadTable();
+    }
+
+    x$('#admin_button').on('click', function() {
+        reset_view();
+        x$('#admin').css({display:'block'});
+    });
+
+    x$('#home_button').on('click', function() {
+        reset_view();
+        x$('#home').css({display:'block'});
+        loadTable();
+
+    });
+    x$('#clear_data').on('click', function() {
+        store.nuke();
+        data = {
+            key: 'data',
+            data: [],
+            curr_punch: null
+        };
+
+    })
+
+    function reset_view() {
+        loadTable();
+        x$('.view').css({display:'none'});
+    }
+
+    function loadTable() {
+        x$('#tracking-table tbody tr').html('remove');
+
+        data.data.forEach(function(row) {
+            x$('#tracking-table tbody').html('bottom', '<tr><td>' +
+                    new Date(row.start).toLocaleTimeString() + '</td><td>' +
+                    new Date(row.stop).toLocaleTimeString()
+                    + '</td><td>' +
+                    toHours(row.stop - row.start) + '</td></tr>');
+        });
+    }
+
 });

@@ -30,13 +30,13 @@ body {
   padding: 0 20px;
   margin-bottom: 20px;
   cursor: pointer;
-  width: 84px;
+  width: 95%;
   background:#cfa44e;
   border: 1px solid #C97917;
   font-size: 18px;
   font-weight: 200;
   text-shadow: 0 -1px 0 #7E4B0D;
-  height: 84px;
+  height: 48px;
   line-height: 40px;
   color:#fff;
   text-align: center;
@@ -44,6 +44,9 @@ body {
 
 #back_button {
   background: grey;
+}
+table {
+    width: 100%;
 }
  
 .view {

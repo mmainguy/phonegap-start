@@ -15,8 +15,31 @@
 	<body>
  		<div id="title_bar">Time</div>
 
-		<div id="welcome" class="view">
+		<div id="home" class="view">
 		  <button class="app_button" id="start_button">Start</button>
+          <button class="app_button" id="stop_button">Stop</button>
+          <div id="tracking">
+              <table id="tracking-table">
+                  <thead>
+                  <th>Start</th>
+                  <th>End</th>
+                  <th>Dur</th>
+                  </thead>
+                  <tbody>
+                  </tbody>
+              </table>
+          </div>
 		</div>
+
+
+        <div id="admin" class="view">
+            <input type="button" class="button btn" name="clear_data" id="clear_data" value='clear'/>
+        </div>
+
+        <div id='footer_bar'>
+            <input type="button" class="button btn" name="home_button" id="home_button" value='home'/>
+            <input type="button" class="button btn" name="admin_button" id="admin_button" value='admin'/>
+        </div>
+
 	</body>
 </html>
