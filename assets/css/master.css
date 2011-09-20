@@ -23,23 +23,30 @@ body {
   box-shadow: 0 0 3px rgba(0,0,0,0.3);
 }
 
-.app_button, button {
+.button {
   -webkit-border-radius: 10px;
   border-radius: 10px;
   display: inline-block;
   padding: 0 20px;
   margin-bottom: 20px;
   cursor: pointer;
-  width: 95%;
+
   background:#cfa44e;
   border: 1px solid #C97917;
   font-size: 18px;
   font-weight: 200;
-  text-shadow: 0 -1px 0 #7E4B0D;
+  text-shadow: 0 -1px 6px #7E4B10;
   height: 48px;
   line-height: 40px;
   color:#fff;
   text-align: center;
+}
+.app_button {
+  width: 88px;
+}
+.nav_button {
+
+  width: 44px%;
 }
 
 #back_button {
