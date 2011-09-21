@@ -1,45 +1,47 @@
 <!doctype html>
 <html>
-	<head>
-		<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
-		<title>Time Machine</title>
-		<link rel="stylesheet" href="assets/css/master.css" type="text/css" media="screen" />
-		<script src="phonegap.js" type="text/javascript" charset="utf-8"></script>
-		<script src="assets/js/xui.js" type="text/javascript" charset="utf-8"></script>
-		<script src="assets/js/lawnchair/adaptors.js" type="text/javascript" charset="utf-8"></script>
-		<script src="assets/js/lawnchair/Lawnchair.js" type="text/javascript" charset="utf-8"></script>
-		<script src="assets/js/dsl.js" type="text/javascript" charset="utf-8"></script>
-		<script src="assets/js/app.js" type="text/javascript" charset="utf-8"></script>
-		
-	</head>
-	<body>
- 		<div id="title_bar">Time</div>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width"/>
+    <title>Time Machine</title>
+    <link rel="stylesheet" href="assets/css/master.css" type="text/css" media="screen"/>
+    <script src="phonegap.js" type="text/javascript" charset="utf-8"></script>
+    <script src="assets/js/xui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="assets/js/lawnchair/adaptors.js" type="text/javascript" charset="utf-8"></script>
+    <script src="assets/js/lawnchair/Lawnchair.js" type="text/javascript" charset="utf-8"></script>
+    <script src="assets/js/dsl.js" type="text/javascript" charset="utf-8"></script>
+    <script src="assets/js/app.js" type="text/javascript" charset="utf-8"></script>
 
-		<div id="home" class="view">
-		  <div class="app_button button" id="start_button">Start</div>
-          <div class="app_button button" id="stop_button">Stop</div>
-          <div id="tracking">
-              <table id="tracking-table">
-                  <thead>
-                  <th>Start</th>
-                  <th>End</th>
-                  <th>Dur</th>
-                  </thead>
-                  <tbody>
-                  </tbody>
-              </table>
-          </div>
-		</div>
+</head>
+<body>
+<header id="title_bar">Time</header>
+
+<div id="home" class="view">
+    <header>
+        <div class="app_button button timer_button" id="start_button">Start</div>
+        <div class="app_button button timer_button" id="stop_button">Stop</div>
+    </header>
+    <div id="tracking">
+        <table id="tracking-table">
+            <thead>
+            <th>Start</th>
+            <th>End</th>
+            <th>Dur</th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 
-        <div id="admin" class="view">
-            <div class="app_button button" id="clear_data">Clear Data</div>
-        </div>
+<div id="admin" class="view">
+    <div class="app_button button" id="clear_data">Clear Data</div>
+</div>
 
-        <div id='footer_bar'>
-            <div class="nav_button button" name="home_button" id="home_button">Home</div>
-            <div class="nav_button button" name="admin_button" id="admin_button">Admin</div>
-        </div>
+<nav id='footer_bar'>
+    <div class="nav_button button" name="home_button" id="home_button">Home</div>
+    <div class="nav_button button" name="admin_button" id="admin_button">Admin</div>
+</nav>
 
-	</body>
+</body>
 </html>

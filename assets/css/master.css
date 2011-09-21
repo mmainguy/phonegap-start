@@ -1,69 +1,84 @@
 body {
-  background: #828282;
-  background: -webkit-gradient(linear, 100% 0%, 0% 0%, from(#828282), color-stop(0.47, white), to(#fff));
-  margin: 0;
-  font: 18px Helvetica;
-  text-align: center;
+    background: #828282;
+    background: -webkit-gradient(linear, 100% 0%, 0% 0%, from(#828282), color-stop(0.47, white), to(#fff));
+    margin: 0;
+    font: 18px Helvetica;
+    text-align: center;
 }
 
 #title_bar {
-  /* need a position set to something for z-index to take effect */
-  position: relative;
-  z-index: 1;
-  background: #7d7d7d;
-  background: -webkit-gradient(linear, 0 0, 0 70%, from(#fff), to(#7d7d7d));
-  background: linear-gradient(#fff, #7d7d7d 70%);
-  color: #325a82;
-  text-shadow: 0 1px 0 #4e8fcf;
-  border-bottom: 1px solid #999;
-  height: 44px;
-  line-height: 44px;
-  padding: 0;
-  -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.3);
-  box-shadow: 0 0 3px rgba(0,0,0,0.3);
+    /* need a position set to something for z-index to take effect */
+    position: relative;
+    z-index: 1;
+    background: #7d7d7d;
+    background: -webkit-gradient(linear, 0 0, 0 70%, from(#fff), to(#7d7d7d));
+    background: linear-gradient(#fff, #7d7d7d 70%);
+    color: #325a82;
+    text-shadow: 0 1px 0 #4e8fcf;
+    border-bottom: 1px solid #999;
+    height: 44px;
+    line-height: 44px;
+    padding: 0;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 }
 
 .button {
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  display: inline-block;
-  padding: 0 20px;
-  margin-bottom: 20px;
-  cursor: pointer;
+    -webkit-border-radius: 10px;
+    -webkit-box-shadow: 3px 4px 4px #7e4b10;
+    background: #CFA44E;
+    border-radius: 10px;
+    border: 1px solid #C97917;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 200;
+    height: 48px;
+    line-height: 48px;
+    margin: 2px;
+    padding: 10px;
+    text-align: center;
+    text-shadow: 0 -1px 6px #7E4B10;
+}
 
-  background:#cfa44e;
-  border: 1px solid #C97917;
-  font-size: 18px;
-  font-weight: 200;
-  text-shadow: 0 -1px 6px #7E4B10;
-  height: 48px;
-  line-height: 40px;
-  color:#fff;
-  text-align: center;
+.button.pressed {
+    margin: 3px 0 0 4px;
+    -webkit-box-shadow: 1px 1px 1px #7e4b10;
+    background: #C97917;
 }
+
 .app_button {
-  width: 88px;
+    width: 96px;
 }
+
 .nav_button {
 
-  width: 44px%;
+    width: 48px;
+}
+nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 #back_button {
-  background: grey;
+    background: grey;
 }
+
 table {
     width: 100%;
 }
- 
+
 .view {
-  padding: 35px;
-	/*  only one view is displayed at a time
-	    so we'll set the views to default to be un-displayed
-	    and then override this based on the element id */
-	display: none;
+    padding: 20px;
+    /*  only one view is displayed at a time
+         so we'll set the views to default to be un-displayed
+         and then override this based on the element id */
+    display: none;
 }
+
 /* our three views */
-#welcome {
-  display: block;  
+#home {
+    display: block;
 }
