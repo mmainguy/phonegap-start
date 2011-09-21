@@ -63,12 +63,14 @@ run(function () {
     x$('#admin_button').on('click', function() {
         reset_view();
         x$('#admin').css({display:'block'});
+        return false;
     });
 
     x$('#home_button').on('click', function() {
         reset_view();
         x$('#home').css({display:'block'});
         loadTable();
+        return false;
 
     });
     x$('#clear_data').on('click', function() {
@@ -78,6 +80,7 @@ run(function () {
             data: [],
             curr_punch: null
         };
+        return false;
 
     });
 
