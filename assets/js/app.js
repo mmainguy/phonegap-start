@@ -39,7 +39,7 @@ run(function () {
 
     function setTime(trigger) {
         x$('.app_button').removeClass('pressed');
-        x$('#'+trigger.id).addClass('pressed');
+        x$('#' + trigger.id).addClass('pressed');
 
 
         var curr = new Date();
@@ -52,7 +52,7 @@ run(function () {
             } else {
                 data.curr_punch = null;
             }
-    }
+        }
         store.save(data, function(ret) {
             data = ret;
         });
@@ -65,6 +65,20 @@ run(function () {
         x$('#admin').css({display:'block'});
         return false;
     });
+
+    x$('#current_data_button').on('click', function() {
+        reset_view();
+        x$('#current_data').css({display:'block'});
+        x$('#curr_date')[0].value = new Date(data.curr_punch).toLocaleDateString();
+        x$('#curr_time')[0].value = new Date(data.curr_punch).toLocaleTimeString();
+        return false;
+
+    });
+    x$('#save_current').on('click', function(){
+        data.curr_punch = Date.parse(x$('#curr_date')[0].value + ' '+   x$('#curr_time')[0].value).valueOf();
+        reset_view();
+
+    })
 
     x$('#home_button').on('click', function() {
         reset_view();
@@ -84,11 +98,11 @@ run(function () {
 
     });
 
-    x$('.button').on('touchstart',function(){
-        x$('#'+this.id).addClass('pressed');
+    x$('.button').on('touchstart', function() {
+        x$('#' + this.id).addClass('pressed');
     });
-    x$('.button').on('touchend',function(){
-            x$('#'+this.id).removeClass('pressed');
+    x$('.button').on('touchend', function() {
+        x$('#' + this.id).removeClass('pressed');
     });
 
     function reset_view() {
@@ -107,7 +121,7 @@ run(function () {
                     + '</td><td>' +
                     toHours(row.stop - row.start) + '</td></tr>');
         });
-        x$('#tracking-table tbody').html('bottom','<tr><td></td><td></td><td>'+toHours(total)+'</td></tr>');
+        x$('#tracking-table tbody').html('bottom', '<tr><td></td><td></td><td>' + toHours(total) + '</td></tr>');
     }
 
 });
