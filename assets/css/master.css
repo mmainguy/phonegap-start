@@ -82,3 +82,6 @@ table {
 #home {
     display: block;
 }
+.hidden {
+    display: none;
+}

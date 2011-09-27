@@ -30,7 +30,7 @@ run(function () {
     })();
 
     x$('.timer_button').on('click', function() {
-        setTime(this)
+        setTime(this);
     });
 
     function toHours(time_interval) {
@@ -68,17 +68,27 @@ run(function () {
 
     x$('#current_data_button').on('click', function() {
         reset_view();
-        x$('#current_data').css({display:'block'});
-        x$('#curr_date')[0].value = new Date(data.curr_punch).toLocaleDateString();
-        x$('#curr_time')[0].value = new Date(data.curr_punch).toLocaleTimeString();
+        //$('#curr_date_input').val(new Date(data.curr_punch));
+        var curr_date = $('#curr_date_input');
+
+        curr_date.scroller({
+            preset: 'datetime',
+            onClose: function (text, scroll_data) {
+                data.curr_punch = scroll_data.getDate().valueOf();
+                store.save(data, function(ret) {
+                    data = ret;
+                });
+                reset_view();
+                x$('#admin').css({display:'block'});
+
+            }
+
+        });
+        curr_date.scroller('setDate', new Date(data.curr_punch), true);
+        curr_date.scroller('show');
         return false;
 
     });
-    x$('#save_current').on('click', function(){
-        data.curr_punch = Date.parse(x$('#curr_date')[0].value + ' '+   x$('#curr_time')[0].value).valueOf();
-        reset_view();
-
-    })
 
     x$('#home_button').on('click', function() {
         reset_view();
@@ -87,7 +97,8 @@ run(function () {
         return false;
 
     });
-    x$('#clear_data').on('click', function() {
+
+    x$('#clear_data_button').on('click', function() {
         store.nuke();
         data = {
             key: 'data',
@@ -101,6 +112,7 @@ run(function () {
     x$('.button').on('touchstart', function() {
         x$('#' + this.id).addClass('pressed');
     });
+
     x$('.button').on('touchend', function() {
         x$('#' + this.id).removeClass('pressed');
     });
@@ -109,6 +121,7 @@ run(function () {
         loadTable();
         x$('.view').css({display:'none'});
     }
+
 
     function loadTable() {
         x$('#tracking-table tbody tr').html('remove');

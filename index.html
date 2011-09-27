@@ -4,12 +4,17 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width"/>
     <title>Time Machine</title>
     <link rel="stylesheet" href="assets/css/master.css" type="text/css" media="screen"/>
+    <link href="assets/css/mobiscroll-1.5.1.css" rel="stylesheet" type="text/css" />
+
     <script src="phonegap.js" type="text/javascript" charset="utf-8"></script>
+    <script src="assets/js/jquery.js" type="text/javascript" charset="utf-8"></script>
     <script src="assets/js/xui.js" type="text/javascript" charset="utf-8"></script>
     <script src="assets/js/lawnchair/adaptors.js" type="text/javascript" charset="utf-8"></script>
     <script src="assets/js/lawnchair/Lawnchair.js" type="text/javascript" charset="utf-8"></script>
     <script src="assets/js/dsl.js" type="text/javascript" charset="utf-8"></script>
     <script src="assets/js/app.js" type="text/javascript" charset="utf-8"></script>
+    <script src="assets/js/mobiscroll-1.5.1.js" type="text/javascript"></script>
+
 
 </head>
 <body>
@@ -32,14 +37,10 @@
         </table>
     </div>
 </div>
-<div id="current_data" class="view">
-    <input type="date" name="curr_date" id="curr_date"></input>
-    <input type="time" name="curr_time" id="curr_time"></input>
-    <div class="app_button button" name="save_current" id="save_current">Save</div>
-</div>
 
 <div id="admin" class="view">
-    <div class="app_button button" id="clear_data">Clear Data</div>
+    <input class='hidden' type="datetime" name="curr_date_input" id="curr_date_input"/>
+    <div class="app_button button" id="clear_data_button">Clear Data</div>
     <div class="app_button button" id="current_data_button">Edit</div>
 </div>
 
