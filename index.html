@@ -4,7 +4,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width"/>
     <title>Time Machine</title>
     <link rel="stylesheet" href="assets/css/master.css" type="text/css" media="screen"/>
-    <link href="assets/css/mobiscroll-1.5.1.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="assets/css/datepicker.css" type="text/css" media="screen"/>
 
     <script src="phonegap.js" type="text/javascript" charset="utf-8"></script>
     <script src="assets/js/jquery.js" type="text/javascript" charset="utf-8"></script>
@@ -13,7 +13,6 @@
     <script src="assets/js/lawnchair/Lawnchair.js" type="text/javascript" charset="utf-8"></script>
     <script src="assets/js/dsl.js" type="text/javascript" charset="utf-8"></script>
     <script src="assets/js/app.js" type="text/javascript" charset="utf-8"></script>
-    <script src="assets/js/mobiscroll-1.5.1.js" type="text/javascript"></script>
 
 
 </head>
@@ -40,14 +39,95 @@
 
 <div id="admin" class="view">
     <input class='hidden' type="datetime" name="curr_date_input" id="curr_date_input"/>
+
     <div class="app_button button" id="clear_data_button">Clear Data</div>
     <div class="app_button button" id="current_data_button">Edit</div>
+</div>
+
+<div id="datetime" class="view">
+    <div id="year">2011</div>
+    <div id="month">01</div>
+    <div id="day">01</div>
+</div>
+
+<div id="datepicker" class="view">
+    <div class="datepicker">
+        <div class="header">
+            12/31/2001
+        </div>
+        <table class="date">
+            <thead>
+            <tr>
+                <th>Year</th>
+                <th>Month</th>
+                <th>Day</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="plus">
+                <td>+</td>
+                <td>+</td>
+                <td>+</td>
+            </tr>
+            <tr class="value">
+                <td class="year">
+                    2010
+                </td>
+                <td class="month">
+                    02
+                </td>
+                <td class="day">
+                    24
+                </td>
+            </tr>
+            <tr class="minus">
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="time">
+            <thead>
+            <tr>
+                <th>Hour</th>
+                <th>Minute</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="plus">
+                <td>+</td>
+                <td>+</td>
+                <td>+</td>
+            </tr>
+
+
+            <td class="hour">
+                <input type="text" value="06"/>
+            </td>
+            <td class="minute">
+                <input type="text" value="30"/>
+            </td>
+            <td class="ampm">
+                AM
+            </td>
+            <tr class="minus">
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <nav id='footer_bar'>
     <div class="nav_button button" name="home_button" id="home_button">Home</div>
     <div class="nav_button button" name="admin_button" id="admin_button">Admin</div>
 </nav>
+
 
 </body>
 </html>

@@ -1,9 +1,10 @@
 body {
     background: #828282;
-    background: -webkit-gradient(linear, 100% 0%, 0% 0%, from(#828282), color-stop(0.47, white), to(#fff));
+    background: -webkit-linear-gradient(left, #444, #555, #555, #444);
     margin: 0;
     font: 18px Helvetica;
     text-align: center;
+    color: #ffe;
 }
 
 #title_bar {
@@ -11,9 +12,8 @@ body {
     position: relative;
     z-index: 1;
     background: #7d7d7d;
-    background: -webkit-gradient(linear, 0 0, 0 70%, from(#fff), to(#7d7d7d));
-    background: linear-gradient(#fff, #7d7d7d 70%);
-    color: #325a82;
+    background: -webkit-linear-gradient(top, #999, #555, #555);
+
     text-shadow: 0 1px 0 #4e8fcf;
     border-bottom: 1px solid #999;
     height: 44px;
@@ -25,10 +25,10 @@ body {
 
 .button {
     -webkit-border-radius: 10px;
-    -webkit-box-shadow: 3px 4px 4px #7e4b10;
-    background: #CFA44E;
+    -webkit-box-shadow: 3px 4px 4px #999;
+    background: #ccc;
     border-radius: 10px;
-    border: 1px solid #C97917;
+    border: 1px solid #fff;
     color: white;
     cursor: pointer;
     display: inline-block;
@@ -44,8 +44,9 @@ body {
 
 .button.pressed {
     margin: 3px 0 0 4px;
-    -webkit-box-shadow: 1px 1px 1px #7e4b10;
-    background: #C97917;
+    -webkit-box-shadow: 1px 1px 1px #222;
+    background: #555;
+    border-color:#777;
 }
 
 .app_button {

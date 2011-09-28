@@ -1,0 +1,47 @@
+.datepicker * {
+    font-family: "Verdana";
+    margin: 0;
+    padding: 0;
+    margin: auto;
+    text-align: center;
+    color: #fff;
+}
+
+.date {
+    margin: auto
+}
+
+.plus td {
+    -webkit-border-radius: 10px 10px 0 0;
+}
+
+.minus td {
+    -webkit-border-radius: 0 0 10px 10px;
+}
+
+
+.datepicker td {
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 30px;
+    overflow: hidden;
+    color: #000;
+    background-image: -webkit-linear-gradient(top, #ccc, #ddd, #bbb);
+}
+.datepicker .plus td, .datepicker .minus td {
+    height: 45px;
+}
+
+.datepicker table {
+    height: 100px;
+    margin: auto;
+}
+
+.datepicker {
+    text-align: center;
+    margin: auto;
+    background-image: -webkit-linear-gradient(top, #777, #555);
+    -webkit-border-radius: 15px;
+    border: solid 2px #eee;
+}

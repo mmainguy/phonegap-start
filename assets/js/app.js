@@ -13,8 +13,8 @@ run(function () {
             data = stored_data
         }
     });
-    loadTable();
 
+    loadTable();
     var init = (function () {
         setInterval(function() {
             d = new Date();
@@ -40,7 +40,6 @@ run(function () {
     function setTime(trigger) {
         x$('.app_button').removeClass('pressed');
         x$('#' + trigger.id).addClass('pressed');
-
 
         var curr = new Date();
         if (data.curr_punch != null) {
@@ -68,26 +67,10 @@ run(function () {
 
     x$('#current_data_button').on('click', function() {
         reset_view();
+        $('#datepicker').css({display: 'block'});
         //$('#curr_date_input').val(new Date(data.curr_punch));
-        var curr_date = $('#curr_date_input');
-
-        curr_date.scroller({
-            preset: 'datetime',
-            onClose: function (text, scroll_data) {
-                data.curr_punch = scroll_data.getDate().valueOf();
-                store.save(data, function(ret) {
-                    data = ret;
-                });
-                reset_view();
-                x$('#admin').css({display:'block'});
-
-            }
-
-        });
-        curr_date.scroller('setDate', new Date(data.curr_punch), true);
-        curr_date.scroller('show');
+        var curr_date = x$('#curr_date_input');
         return false;
-
     });
 
     x$('#home_button').on('click', function() {
