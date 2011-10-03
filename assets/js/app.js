@@ -33,6 +33,30 @@ run(function () {
         setTime(this);
     });
 
+    x$('.plus').on('click', function(e) {
+        var val_node = x$('#value-' + e.target.id.split('-')[1])[0];
+        var old_value = parseInt(val_node.value);
+        val_node.value = old_value + 1;
+        return false;
+    });
+
+    x$('.minus').on('click', function(e) {
+        var val_node = x$('#value-' + e.target.id.split('-')[1])[0];
+        var old_value = parseInt(val_node.value);
+        val_node.value = old_value - 1;
+        return false;
+    });
+
+    x$('#pm').on('click', function(e) {
+        x$('#value-ampm')[0].value = 'PM';
+        return false;
+    });
+
+    x$('#am').on('click', function(e) {
+        x$('#value-ampm')[0].value = 'AM';
+        return false;
+    });
+
     function toHours(time_interval) {
         return (time_interval / (60000 * 60)).toFixed(2);
     }
@@ -67,9 +91,31 @@ run(function () {
 
     x$('#current_data_button').on('click', function() {
         reset_view();
-        $('#datepicker').css({display: 'block'});
+        var curr_val = new Date(data.curr_punch);
+        var hours = curr_val.getHours();
+        var ampm= "AM";
+        if (hours < 12) {
+            hours = hours + 1;
+        } else {
+            ampm = "PM";
+            if (hours != 12){
+                hours = hours - 12;
+            } else {
+                hours = 12;
+            }
+
+        }
+        x$('#value-year')[0].value = curr_val.getFullYear();
+        x$('#value-month')[0].value = curr_val.getMonth()+1;
+        x$('#value-day')[0].value = curr_val.getDate();
+        x$('#value-minute')[0].value = curr_val.getMinutes();
+        x$('#value-hour')[0].value = hours;
+        x$('#value-ampm')[0].value = ampm;
+
+        x$('#datepicker').css({display: 'block'});
         //$('#curr_date_input').val(new Date(data.curr_punch));
         var curr_date = x$('#curr_date_input');
+        x$('.nav_button').css({display: 'none'});
         return false;
     });
 
@@ -80,6 +126,50 @@ run(function () {
         return false;
 
     });
+
+    x$('#date_cancel_button').on('click', function(e) {
+        reset_view();
+        x$('#admin').css({display:'block'});
+        return false;
+    });
+
+    x$('#date_set_button').on('click', function(e) {
+        var ampm = x$('#value-ampm')[0].value
+        var factor = 0;
+        var hour_value = x$('#value-hour')[0].value;
+        if (ampm == 'PM') {
+            if (hour_value < 12) {
+                factor = 12;
+            } else {
+                if (hour_value == 12) {
+                    factor = -12;
+                }
+            }
+
+
+        }
+        var d = new Date(
+                x$('#value-year')[0].value,
+                parseInt(x$('#value-month')[0].value) - 1,
+                parseInt(x$('#value-day')[0].value),
+                parseInt(x$('#value-hour')[0].value) + factor,
+                x$('#value-minute')[0].value,
+                0,
+                0);
+        data.curr_punch = d.valueOf();
+        store.save(data, function(ret) {
+            data = ret;
+        });
+
+
+        reset_view();
+
+
+        x$('#admin').css({display:'block'});
+        x$('.nav_button').css({display:'inline-block'});
+
+    });
+
 
     x$('#clear_data_button').on('click', function() {
         store.nuke();

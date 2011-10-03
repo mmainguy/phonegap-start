@@ -52,9 +52,6 @@
 
 <div id="datepicker" class="view">
     <div class="datepicker">
-        <div class="header">
-            12/31/2001
-        </div>
         <table class="date">
             <thead>
             <tr>
@@ -65,25 +62,25 @@
             </thead>
             <tbody>
             <tr class="plus">
-                <td>+</td>
-                <td>+</td>
-                <td>+</td>
+                <td class="plus year" id="plus-year">+</td>
+                <td class="plus month" id="plus-month">+</td>
+                <td class="plus day" id="plus-day">+</td>
             </tr>
             <tr class="value">
                 <td class="year">
-                    2010
+                    <input type="text" name="value-year" id="value-year" value="2010"/>
                 </td>
                 <td class="month">
-                    02
+                    <input type="text" name="value-month" id="value-month" value="02"/>
                 </td>
                 <td class="day">
-                    24
+                    <input type="text" name="value-day" id="value-day" value="24"/>
                 </td>
             </tr>
             <tr class="minus">
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
+                <td class="minus year" id="minus-year">-</td>
+                <td class="minus month" id="minus-month">-</td>
+                <td class="minus day" id="minus-day">-</td>
             </tr>
             </tbody>
         </table>
@@ -97,29 +94,33 @@
             </thead>
             <tbody>
             <tr class="plus">
-                <td>+</td>
-                <td>+</td>
-                <td>+</td>
+                <td class="plus hour" id="plus-hour">+</td>
+                <td class="plus minute" id="plus-minute">+</td>
+                <td class="ampm" id="pm">+</td>
             </tr>
 
-
-            <td class="hour">
-                <input type="text" value="06"/>
-            </td>
-            <td class="minute">
-                <input type="text" value="30"/>
-            </td>
-            <td class="ampm">
-                AM
-            </td>
+            <tr class="value">
+                <td class="hour">
+                    <input type="text" id="value-hour" value="06"/>
+                </td>
+                <td class="minute">
+                    <input type="text" id="value-minute" value="30"/>
+                </td>
+                <td class="ampm">
+                    <input type="text" id="value-ampm" value="AM"/>
+                </td>
+            </tr>
             <tr class="minus">
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
+                <td class="minus hour" id="minus-hour">-</td>
+                <td class="minus minute" id="minus-minute">-</td>
+                <td class="ampm" id="am">-</td>
             </tr>
 
             </tbody>
         </table>
+        <div class="button" name="date_set_button" id="date_set_button">Set</div>
+        <div class="button" name="date_cancel_button" id="date_cancel_button">Cancel</div>
+
     </div>
 </div>
 
