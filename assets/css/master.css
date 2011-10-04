@@ -4,6 +4,7 @@
 body {
     background: #828282;
     background: -webkit-linear-gradient(left, #444, #555, #555, #444);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #444), color-stop(25%,#555), color-stop(75%,#444));
     margin: 0;
     font: 18px Helvetica;
     text-align: center;
@@ -14,7 +15,8 @@ body {
     /* need a position set to something for z-index to take effect */
     position: relative;
     z-index: 1;
-    background: #7d7d7d;
+    background-color: #7d7d7d;
+    background: -webkit-gradient(linear,left top,left bottom, color-stop(0%,#999), color-stop(30%,#555));
     background: -webkit-linear-gradient(top, #999, #555, #555);
 
     text-shadow: 0 1px 0 #4e8fcf;
@@ -31,7 +33,7 @@ body {
     -webkit-box-shadow: 3px 4px 4px #ccc;
     background: #ccc;
     border-radius: 10px;
-    border: 1px solid #fff;
+    border: 1px solid #616161;
     color: white;
     cursor: pointer;
     display: inline-block;
@@ -49,7 +51,7 @@ body {
     margin: 3px 0 0 4px;
     -webkit-box-shadow: 1px 1px 1px #222;
     background: #555;
-    border-color:#777;
+    border-color:#656565;
 }
 
 .app_button {
