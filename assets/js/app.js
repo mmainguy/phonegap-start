@@ -92,19 +92,17 @@ run(function () {
     x$('#current_data_button').on('click', function() {
         reset_view();
         var curr_val = new Date(data.curr_punch);
+
         var hours = curr_val.getHours();
         var ampm= "AM";
-        if (hours < 12) {
-            hours = hours + 1;
-        } else {
-            ampm = "PM";
-            if (hours != 12){
-                hours = hours - 12;
-            } else {
-                hours = 12;
-            }
-
+        if (hours > 11) {
+            ampm="PM";
         }
+        hours = hours %12;
+        if (hours == 0) {
+            hours = 12;
+        }
+
         x$('#value-year')[0].value = curr_val.getFullYear();
         x$('#value-month')[0].value = curr_val.getMonth()+1;
         x$('#value-day')[0].value = curr_val.getDate();
@@ -140,13 +138,11 @@ run(function () {
         if (ampm == 'PM') {
             if (hour_value < 12) {
                 factor = 12;
-            } else {
-                if (hour_value == 12) {
-                    factor = -12;
-                }
             }
-
-
+        } else {
+            if (hour_value == 12) {
+                factor = -12;
+            }
         }
         var d = new Date(
                 x$('#value-year')[0].value,
@@ -160,8 +156,6 @@ run(function () {
         store.save(data, function(ret) {
             data = ret;
         });
-
-
         reset_view();
 
 

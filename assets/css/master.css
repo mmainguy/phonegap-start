@@ -28,7 +28,7 @@ body {
 
 .button {
     -webkit-border-radius: 10px;
-    -webkit-box-shadow: 3px 4px 4px #999;
+    -webkit-box-shadow: 3px 4px 4px #ccc;
     background: #ccc;
     border-radius: 10px;
     border: 1px solid #fff;
@@ -69,7 +69,9 @@ nav {
 #back_button {
     background: grey;
 }
-
+#datepicker .datepicker {
+    padding: 8px;
+}
 table {
     width: 100%;
 }

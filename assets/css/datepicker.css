@@ -14,11 +14,13 @@
 .datepicker .plus td {
     -webkit-border-radius: 10px 10px 0 0;
     background-image: -webkit-linear-gradient(top, #ccc,  #999);
+    background: #ccc;
 }
 
 .datepicker .minus td {
     -webkit-border-radius: 0 0 10px 10px;
     background-image: -webkit-linear-gradient(top, #999, #ccc);
+    background: #ccc;
 }
 
 .datepicker td {
@@ -28,6 +30,7 @@
     font-size: 30px;
     overflow: hidden;
     color: #000;
+    background: #ccc;
     background-image: -webkit-linear-gradient(top, #999, #8c8c8c, #858585, #8c8c8c, #999);
 }
 
