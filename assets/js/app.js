@@ -1,6 +1,15 @@
 // 
 //  --- our app behavior logic ---
 //
+Number.prototype.to_s = function() {
+
+    if (this < 10) {
+        return '0' + this.toString();
+    } else {
+        return this.toString();
+    }
+}
+
 run(function () {
     // immediately invoked on first run
     var data = {
@@ -35,15 +44,15 @@ run(function () {
 
     x$('.plus').on('click', function(e) {
         var val_node = x$('#value-' + e.target.id.split('-')[1])[0];
-        var old_value = parseInt(val_node.value);
-        val_node.value = old_value + 1;
+        var old_value = parseInt(val_node.value,10);
+        val_node.value = (old_value + 1).to_s();
         return false;
     });
 
     x$('.minus').on('click', function(e) {
         var val_node = x$('#value-' + e.target.id.split('-')[1])[0];
-        var old_value = parseInt(val_node.value);
-        val_node.value = old_value - 1;
+        var old_value = parseInt(val_node.value,10);
+        val_node.value = (old_value - 1).to_s();
         return false;
     });
 
@@ -104,10 +113,10 @@ run(function () {
         }
 
         x$('#value-year')[0].value = curr_val.getFullYear();
-        x$('#value-month')[0].value = curr_val.getMonth()+1;
-        x$('#value-day')[0].value = curr_val.getDate();
-        x$('#value-minute')[0].value = curr_val.getMinutes();
-        x$('#value-hour')[0].value = hours;
+        x$('#value-month')[0].value = (curr_val.getMonth()+1).to_s();
+        x$('#value-day')[0].value = curr_val.getDate().to_s();
+        x$('#value-minute')[0].value = curr_val.getMinutes().to_s();
+        x$('#value-hour')[0].value = hours.to_s();
         x$('#value-ampm')[0].value = ampm;
 
         x$('#datepicker').css({display: 'block'});
@@ -134,7 +143,7 @@ run(function () {
     x$('#date_set_button').on('click', function(e) {
         var ampm = x$('#value-ampm')[0].value
         var factor = 0;
-        var hour_value = x$('#value-hour')[0].value;
+        var hour_value = parseInt(x$('#value-hour')[0].value);
         if (ampm == 'PM') {
             if (hour_value < 12) {
                 factor = 12;
@@ -146,9 +155,9 @@ run(function () {
         }
         var d = new Date(
                 x$('#value-year')[0].value,
-                parseInt(x$('#value-month')[0].value) - 1,
-                parseInt(x$('#value-day')[0].value),
-                parseInt(x$('#value-hour')[0].value) + factor,
+                parseInt(x$('#value-month')[0].value,10) - 1,
+                parseInt(x$('#value-day')[0].value,10),
+                parseInt(x$('#value-hour')[0].value,10) + factor,
                 x$('#value-minute')[0].value,
                 0,
                 0);
