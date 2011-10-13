@@ -1,22 +1,17 @@
 // 
 //  --- our app behavior logic ---
 //
-Number.prototype.to_s = function() {
 
-    if (this < 10) {
-        return '0' + this.toString();
-    } else {
-        return this.toString();
-    }
-}
 
 run(function () {
     // immediately invoked on first run
+    initDatePicker();
     var data = {
         key: 'data',
         data: [],
         curr_punch: null
     };
+
     store.get('data', function(stored_data) {
         if (stored_data != null) {
             data = stored_data
@@ -26,10 +21,10 @@ run(function () {
     loadTable();
     var init = (function () {
         setInterval(function() {
-            d = new Date();
-            my_str = "";
+            var d = new Date();
+            var my_str = "";
             if (data.curr_punch != null) {
-                my_str = toHours(d.valueOf() - data.curr_punch);
+                my_str = (d.valueOf() - data.curr_punch).toHours();
                 my_str = " (" + my_str + ")"
                 x$('#start_button').addClass('pressed');
             }
@@ -38,37 +33,10 @@ run(function () {
 
     })();
 
+
     x$('.timer_button').on('click', function() {
         setTime(this);
     });
-
-    x$('.plus').on('click', function(e) {
-        var val_node = x$('#value-' + e.target.id.split('-')[1])[0];
-        var old_value = parseInt(val_node.value,10);
-        val_node.value = (old_value + 1).to_s();
-        return false;
-    });
-
-    x$('.minus').on('click', function(e) {
-        var val_node = x$('#value-' + e.target.id.split('-')[1])[0];
-        var old_value = parseInt(val_node.value,10);
-        val_node.value = (old_value - 1).to_s();
-        return false;
-    });
-
-    x$('#pm').on('click', function(e) {
-        x$('#value-ampm')[0].value = 'PM';
-        return false;
-    });
-
-    x$('#am').on('click', function(e) {
-        x$('#value-ampm')[0].value = 'AM';
-        return false;
-    });
-
-    function toHours(time_interval) {
-        return (time_interval / (60000 * 60)).toFixed(2);
-    }
 
     function setTime(trigger) {
         x$('.app_button').removeClass('pressed');
@@ -92,39 +60,36 @@ run(function () {
         loadTable();
     }
 
+
     x$('#admin_button').on('click', function() {
         reset_view();
         x$('#admin').css({display:'block'});
         return false;
     });
 
+
+    x$('#tracking-table a').on('click'),function() {
+        datepicker.build(new Date(data.curr_punch), function(e) {
+            data.curr_punch = datepicker.getDate().valueOf();
+            store.save(data, function(ret) {
+                data = ret;
+            });
+        });
+
+    }
+
     x$('#current_data_button').on('click', function() {
-        reset_view();
-        var curr_val = new Date(data.curr_punch);
 
-        var hours = curr_val.getHours();
-        var ampm= "AM";
-        if (hours > 11) {
-            ampm="PM";
-        }
-        hours = hours %12;
-        if (hours == 0) {
-            hours = 12;
-        }
+        datepicker.build(new Date(data.curr_punch), function(e) {
+            data.curr_punch = datepicker.getDate().valueOf();
+            store.save(data, function(ret) {
+                data = ret;
+            });
+        });
 
-        x$('#value-year')[0].value = curr_val.getFullYear();
-        x$('#value-month')[0].value = (curr_val.getMonth()+1).to_s();
-        x$('#value-day')[0].value = curr_val.getDate().to_s();
-        x$('#value-minute')[0].value = curr_val.getMinutes().to_s();
-        x$('#value-hour')[0].value = hours.to_s();
-        x$('#value-ampm')[0].value = ampm;
-
-        x$('#datepicker').css({display: 'block'});
-        //$('#curr_date_input').val(new Date(data.curr_punch));
-        var curr_date = x$('#curr_date_input');
-        x$('.nav_button').css({display: 'none'});
         return false;
     });
+
 
     x$('#home_button').on('click', function() {
         reset_view();
@@ -134,44 +99,8 @@ run(function () {
 
     });
 
-    x$('#date_cancel_button').on('click', function(e) {
-        reset_view();
-        x$('#admin').css({display:'block'});
-        return false;
-    });
-
-    x$('#date_set_button').on('click', function(e) {
-        var ampm = x$('#value-ampm')[0].value
-        var factor = 0;
-        var hour_value = parseInt(x$('#value-hour')[0].value);
-        if (ampm == 'PM') {
-            if (hour_value < 12) {
-                factor = 12;
-            }
-        } else {
-            if (hour_value == 12) {
-                factor = -12;
-            }
-        }
-        var d = new Date(
-                x$('#value-year')[0].value,
-                parseInt(x$('#value-month')[0].value,10) - 1,
-                parseInt(x$('#value-day')[0].value,10),
-                parseInt(x$('#value-hour')[0].value,10) + factor,
-                x$('#value-minute')[0].value,
-                0,
-                0);
-        data.curr_punch = d.valueOf();
-        store.save(data, function(ret) {
-            data = ret;
-        });
-        reset_view();
 
 
-        x$('#admin').css({display:'block'});
-        x$('.nav_button').css({display:'inline-block'});
-
-    });
 
 
     x$('#clear_data_button').on('click', function() {
@@ -198,19 +127,18 @@ run(function () {
         x$('.view').css({display:'none'});
     }
 
-
     function loadTable() {
         x$('#tracking-table tbody tr').html('remove');
         total = 0.0;
         data.data.forEach(function(row) {
             total += row.stop - row.start;
-            x$('#tracking-table tbody').html('bottom', '<tr><td>' +
-                    new Date(row.start).toLocaleTimeString() + '</td><td>' +
+            x$('#tracking-table tbody').html('bottom', '<tr><td><a id="date-' + row.id + '">' +
+                    new Date(row.start).toLocaleTimeString() + '</a></td><td><a>' +
                     new Date(row.stop).toLocaleTimeString()
-                    + '</td><td>' +
-                    toHours(row.stop - row.start) + '</td></tr>');
+                    + '</a></td><td>' +
+                    (row.stop - row.start).toHours() + '</td></tr>');
         });
-        x$('#tracking-table tbody').html('bottom', '<tr><td></td><td></td><td>' + toHours(total) + '</td></tr>');
+        x$('#tracking-table tbody').html('bottom', '<tr><td></td><td></td><td>' + total.toHours() + '</td></tr>');
     }
 
 });

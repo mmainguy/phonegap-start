@@ -58,10 +58,11 @@
     height: 100px;
     margin: auto;
 }
-
-.datepicker {
+#datepicker {
+    z-index: 1;
+    display: none;
+    position: absolute;
     text-align: center;
-    margin: auto;
     background-image: -webkit-linear-gradient(top, #777, #555);
     background-image: -webkit-gradient(linear, left top, left bottom, #777, #555);
     -webkit-border-radius: 15px;
